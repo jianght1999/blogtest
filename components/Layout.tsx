@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 
-const NavItem = ({ href, children }: { href: string; children: React.ReactNode }) => (
+// Added optional flag to children to resolve TypeScript errors where children are not correctly detected from JSX content
+const NavItem = ({ href, children }: { href: string; children?: React.ReactNode }) => (
   <a href={href} className="text-slate-400 hover:text-white transition-colors duration-200 font-medium">
     {children}
   </a>

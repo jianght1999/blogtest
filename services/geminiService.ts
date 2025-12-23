@@ -4,11 +4,18 @@ import { USER_INFO, PROJECTS, SKILLS } from "../constants.tsx";
 
 export class GeminiAssistant {
   async getChatResponse(message: string, history: { role: string; content: string }[]) {
-    // CRITICAL: Create a new instance right before the API call to ensure it uses 
-    // the current environment variable and avoids initialization errors on load.
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // Check if API key exists before initialization
+    const apiKey = process.env.API_KEY;
+    
+    if (!apiKey || apiKey === "undefined" || apiKey === "") {
+      console.warn("Gemini API Key is missing. Please set API_KEY in your environment variables.");
+      return "系统未检测到 API Key。请在部署平台（如 Vercel）的环境变量中配置 API_KEY 后再试。";
+    }
 
     try {
+      // Create instance only when needed
+      const ai = new GoogleGenAI({ apiKey });
+
       const systemInstruction = `
         You are an AI assistant representing ${USER_INFO.name}, a ${USER_INFO.title}.
         Your goal is to answer questions from visitors to Alex's personal website.
@@ -42,7 +49,7 @@ export class GeminiAssistant {
       return response.text || "抱歉，我暂时无法回答这个问题。";
     } catch (error) {
       console.error("Gemini Error:", error);
-      return "我的神经网络正在休息，请稍后再试！";
+      return "对话服务暂时不可用，请确保您的 API Key 有效并已开启计费（或在支持的区域内）。";
     }
   }
 }
