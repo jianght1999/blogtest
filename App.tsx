@@ -42,7 +42,7 @@ const App: React.FC = () => {
 
   const renderHome = () => (
     <div className="max-w-7xl mx-auto py-12 animate-fade">
-      {/* Hero Section with Longer Bio support */}
+      {/* Hero Section */}
       <div className="flex flex-col gap-12 mb-32">
         <header className="w-full">
           <h1 className="text-[12vw] font-black leading-[0.8] tracking-tighter mb-16 select-none">
@@ -75,13 +75,22 @@ const App: React.FC = () => {
 
       {/* Info Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 py-40 border-b border-slate-100">
-        <div className="space-y-10">
-          <h2 className="text-xs font-black uppercase tracking-[0.5em] text-slate-300">Philosophy</h2>
-          <p className="text-2xl font-light leading-relaxed">
-            “极简不是缺失，而是克制。” <br/><br/>
-            在日益臃肿的数字世界中，我选择通过删减无谓的噪音，去触达问题的本质，为用户创造呼吸的空间。
-          </p>
+        {/* Replaced Philosophy with Build Document */}
+        <div 
+          className="space-y-10 group cursor-pointer" 
+          onClick={() => setSection('Tech')}
+        >
+          <h2 className="text-xs font-black uppercase tracking-[0.5em] text-slate-300">Build Document</h2>
+          <div className="space-y-6">
+            <p className="text-2xl font-light leading-relaxed group-hover:translate-x-2 transition-transform duration-500">
+              探索本站的构建逻辑与技术栈实现。从底层架构到 Vercel 自动化部署的全流程记录，这也是一篇记录成长的博客。
+            </p>
+            <div className="text-[10px] font-black uppercase tracking-widest border-b border-black inline-block pb-1">
+              Read Document ↗
+            </div>
+          </div>
         </div>
+
         <div className="space-y-10">
           <h2 className="text-xs font-black uppercase tracking-[0.5em] text-slate-300">Expertise</h2>
           <div className="grid grid-cols-1 gap-12">
