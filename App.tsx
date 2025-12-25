@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sidebar } from './components/Sidebar.tsx';
 import { AIChat } from './components/AIChat.tsx';
-import { Carousel } from './components/Carousel.tsx';
+import { VisualGallery } from './components/VisualGallery.tsx';
 import { USER_INFO, BLOG_POSTS, SKILLS } from './constants.tsx';
 import { BlogPost } from './types.ts';
 
@@ -19,9 +19,6 @@ const App: React.FC = () => {
   const [isEditing, setIsEditing] = useState<BlogPost | null>(null);
   const [showEditModal, setShowEditModal] = useState(false);
   
-  const [profileImage, setProfileImage] = useState<string>(() => {
-    return localStorage.getItem('profile_image') || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop';
-  });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -45,51 +42,124 @@ const App: React.FC = () => {
 
   const renderHome = () => (
     <div className="max-w-7xl mx-auto py-12 animate-fade">
-      <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-20">
-        <header className="flex-1">
-          <h1 className="text-[10vw] font-black leading-none tracking-tighter mb-10">
+      {/* Hero Section with Longer Bio support */}
+      <div className="flex flex-col gap-12 mb-32">
+        <header className="w-full">
+          <h1 className="text-[12vw] font-black leading-[0.8] tracking-tighter mb-16 select-none">
             {USER_INFO.name}
           </h1>
-          <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-20">
-            <p className="text-xl text-slate-500 font-light max-w-md leading-relaxed">
-              {USER_INFO.bio}
-            </p>
-            <div className="h-px w-20 bg-black hidden md:block"></div>
-            <button 
-              onClick={() => setSection('Tech')}
-              className="text-xs font-black uppercase tracking-[0.3em] hover:translate-x-2 transition-transform inline-flex items-center"
-            >
-              Enter Workspace <span className="ml-4">→</span>
-            </button>
+          <div className="flex flex-col md:flex-row items-start justify-between gap-12 md:gap-32">
+            <div className="flex-1">
+              <p className="text-2xl md:text-3xl text-black font-light leading-snug max-w-2xl">
+                {USER_INFO.bio}
+              </p>
+            </div>
+            <div className="md:w-1/3 space-y-8 pt-2">
+              <div className="h-px w-full bg-black/10"></div>
+              <p className="text-xs font-black uppercase tracking-[0.4em] text-slate-400">Current Focus</p>
+              <p className="text-sm font-medium leading-relaxed">
+                正在研究生成式 AI 如何重塑现代 Web 交互的边界，并致力于构建更具人性化的自动化工具。
+              </p>
+              <button 
+                onClick={() => setSection('Tech')}
+                className="group text-xs font-black uppercase tracking-[0.3em] inline-flex items-center pt-4"
+              >
+                Explore My Work <span className="ml-4 group-hover:translate-x-2 transition-transform">→</span>
+              </button>
+            </div>
           </div>
         </header>
       </div>
 
-      <Carousel />
+      <VisualGallery />
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-16 py-32">
-        <div className="space-y-6">
-          <h2 className="text-xs font-black uppercase tracking-[0.5em]">Philosophy</h2>
-          <p className="text-slate-500 text-sm leading-relaxed">
-            极简不是缺失，而是克制。在复杂的数字世界中，我们通过删减无谓的噪音，去触达问题的本质。
+      {/* Info Grid */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 py-40 border-b border-slate-100">
+        <div className="space-y-10">
+          <h2 className="text-xs font-black uppercase tracking-[0.5em] text-slate-300">Philosophy</h2>
+          <p className="text-2xl font-light leading-relaxed">
+            “极简不是缺失，而是克制。” <br/><br/>
+            在日益臃肿的数字世界中，我选择通过删减无谓的噪音，去触达问题的本质，为用户创造呼吸的空间。
           </p>
         </div>
-        <div className="space-y-6">
-          <h2 className="text-xs font-black uppercase tracking-[0.5em]">Expertise</h2>
-          <div className="flex flex-wrap gap-2">
-            {SKILLS.map(skill => (
-              <span key={skill.name} className="px-3 py-1.5 border border-slate-200 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors cursor-default">
-                {skill.name}
-              </span>
-            ))}
+        <div className="space-y-10">
+          <h2 className="text-xs font-black uppercase tracking-[0.5em] text-slate-300">Expertise</h2>
+          <div className="grid grid-cols-1 gap-12">
+            <div>
+              <p className="text-sm font-black mb-4 uppercase tracking-widest">Core Capabilities</p>
+              <div className="flex flex-wrap gap-2">
+                {SKILLS.map(skill => (
+                  <span key={skill.name} className="px-4 py-2 border border-slate-100 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all cursor-default">
+                    {skill.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-black mb-4 uppercase tracking-widest">Industry Experience</p>
+              <ul className="text-sm space-y-3 font-light text-slate-500">
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-black"></div>
+                  金融科技平台交互重构
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-black"></div>
+                  基于 Gemini 的智能内容分发引擎
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-black"></div>
+                  企业级极简设计系统库
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="space-y-6">
-          <h2 className="text-xs font-black uppercase tracking-[0.5em]">Presence</h2>
-          <div className="flex flex-col space-y-2">
-            <a href="#" className="text-sm font-light hover:underline underline-offset-4">GitHub</a>
-            <a href="#" className="text-sm font-light hover:underline underline-offset-4">LinkedIn</a>
-            <a href="#" className="text-sm font-light hover:underline underline-offset-4">Instagram</a>
+      </section>
+
+      {/* Connection Section / Footer */}
+      <section className="py-40">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-20">
+          <div className="max-w-xl">
+            <h2 className="text-[6vw] md:text-[4vw] font-black leading-none tracking-tighter mb-8 uppercase">
+              Let's create <br/>Something Iconic.
+            </h2>
+            <p className="text-slate-400 text-lg font-light leading-relaxed mb-10">
+              我有兴趣参与具有挑战性的项目，尤其是那些试图通过设计和技术改善人们生活的尝试。
+            </p>
+            <a href={`mailto:${USER_INFO.email}`} className="text-xl md:text-2xl font-black border-b-2 border-black pb-2 hover:text-slate-500 hover:border-slate-300 transition-all">
+              {USER_INFO.email}
+            </a>
+          </div>
+
+          <div className="w-full md:w-auto">
+            <h3 className="text-xs font-black uppercase tracking-[0.5em] text-slate-300 mb-10">Social Presence</h3>
+            <div className="flex flex-col gap-6">
+              {[
+                { name: 'GitHub', url: USER_INFO.github },
+                { name: 'LinkedIn', url: USER_INFO.linkedin },
+                { name: 'Twitter', url: USER_INFO.twitter },
+                { name: 'Instagram', url: USER_INFO.instagram },
+              ].map(social => (
+                <a 
+                  key={social.name} 
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between min-w-[200px] border-b border-slate-100 pb-4 hover:border-black transition-colors"
+                >
+                  <span className="text-sm font-bold uppercase tracking-widest">{social.name}</span>
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-40 pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-slate-300">
+          <p>© 2024 {USER_INFO.name}. Built with Precision.</p>
+          <div className="flex items-center gap-8">
+            <span className="text-black">Location: {USER_INFO.location}</span>
+            <button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="hover:text-black">Back to Top ↑</button>
           </div>
         </div>
       </section>

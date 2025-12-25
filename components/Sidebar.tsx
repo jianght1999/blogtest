@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { USER_INFO } from '../constants.tsx';
 
 interface SidebarProps {
   currentSection: string;
@@ -33,7 +34,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside className="fixed left-0 top-0 h-screen z-50 group">
       <div className="h-full w-20 group-hover:w-60 bg-white border-r border-slate-100 transition-all duration-500 flex flex-col items-start py-10">
         <div className="mb-16 pl-6">
-          <div className="w-8 h-8 bg-black flex items-center justify-center text-white font-black text-lg">A</div>
+          <div className="w-10 h-10 bg-slate-100 overflow-hidden ring-1 ring-slate-200 transition-all group-hover:w-12 group-hover:h-12">
+            <img 
+              src={USER_INFO.avatarUrl} 
+              alt="Avatar" 
+              className="w-full h-full object-cover grayscale brightness-110"
+            />
+          </div>
         </div>
 
         <nav className="flex-1 w-full space-y-4 pr-4">

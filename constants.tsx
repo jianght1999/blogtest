@@ -4,11 +4,14 @@ import { Project, Skill, BlogPost } from './types.ts';
 export const USER_INFO = {
   name: "ALEX CHEN",
   title: "Fullstack Engineer & Designer",
-  bio: "追求代码的诗意与设计的克制。专注于构建纯粹、高效且具有永恒感的数字产品。",
+  bio: "致力于在复杂性中寻找秩序。作为一名深耕全栈开发与交互设计的跨界开发者，我坚信技术不应只是功能的堆砌，而应当是情感与逻辑的完美融合。在过去五年的职业生涯中，我专注于构建具有极致响应速度、优雅交互细节以及高度可扩展性的数字平台。从底层架构的精密逻辑到用户指尖触碰的每一像素，我都追求一种极致的克制与纯粹。",
   email: "alex.chen.dev@example.com",
   github: "https://github.com/alexchen",
   linkedin: "https://linkedin.com/in/alexchen",
-  location: "Shanghai, China"
+  twitter: "https://twitter.com/alexchen",
+  instagram: "https://instagram.com/alexchen",
+  location: "Shanghai, China",
+  avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
 };
 
 export const CAROUSEL_IMAGES = [
