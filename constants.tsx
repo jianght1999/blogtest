@@ -2,14 +2,21 @@
 import { Project, Skill, BlogPost } from './types.ts';
 
 export const USER_INFO = {
-  name: "Alex Chen",
-  title: "Fullstack Engineer & Minimalist",
-  bio: "专注于构建纯粹、高效且具有美感的数字产品。在这里分享关于技术、设计与生活的思考。",
+  name: "ALEX CHEN",
+  title: "Fullstack Engineer & Designer",
+  bio: "追求代码的诗意与设计的克制。专注于构建纯粹、高效且具有永恒感的数字产品。",
   email: "alex.chen.dev@example.com",
   github: "https://github.com/alexchen",
   linkedin: "https://linkedin.com/in/alexchen",
   location: "Shanghai, China"
 };
+
+export const CAROUSEL_IMAGES = [
+  "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1451187530230-b23b995163c9?q=80&w=2000&auto=format&fit=crop"
+];
 
 export const BLOG_POSTS: BlogPost[] = [
   {
@@ -35,40 +42,24 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2024-03-10',
     category: 'Life',
     readTime: '12 min'
-  },
-  {
-    id: '4',
-    title: 'React 19 新特性前瞻',
-    excerpt: '编译器革命即将来临，我们的开发习惯将发生怎样的变化？',
-    date: '2024-03-05',
-    category: 'Tech',
-    readTime: '6 min'
   }
 ];
 
 export const SKILLS: Skill[] = [
-  { name: 'React / Next.js', level: 95, category: 'Frontend' },
+  { name: 'React', level: 95, category: 'Frontend' },
   { name: 'TypeScript', level: 90, category: 'Frontend' },
   { name: 'Node.js', level: 85, category: 'Backend' },
-  { name: 'Gemini AI', level: 80, category: 'AI/ML' }
+  { name: 'Gemini AI', level: 80, category: 'AI/ML' },
+  { name: 'UI/UX', level: 85, category: 'Design' }
 ];
 
-// Added PROJECTS export to resolve the compilation error in geminiService.ts
 export const PROJECTS: Project[] = [
   {
     id: '1',
     title: 'Minimalist Portfolio',
-    description: 'A personal portfolio built with React, Tailwind and Gemini API focusing on high performance.',
-    tags: ['React', 'Tailwind', 'AI'],
+    description: 'A personal portfolio built with React, Tailwind and Gemini API.',
+    tags: ['React', 'AI'],
     imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97',
-    link: '#'
-  },
-  {
-    id: '2',
-    title: 'AI Task Manager',
-    description: 'Smart task management system that prioritizes work using Google GenAI models.',
-    tags: ['Next.js', 'PostgreSQL', 'Gemini'],
-    imageUrl: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b',
     link: '#'
   }
 ];
