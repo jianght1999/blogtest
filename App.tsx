@@ -190,7 +190,6 @@ const App: React.FC = () => {
         onLogout={() => setIsAdmin(false)} 
       />
       
-      {/* 调整了 Main 的响应式边距，增加了左边距的安全空间 */}
       <main className="flex-1 ml-20 md:ml-28 lg:ml-32 p-6 md:p-12 lg:p-20 overflow-x-hidden">
         {currentSection === 'home' ? renderHome() : (
           <div className="max-w-4xl mx-auto py-12 animate-fade px-4 md:px-10">
@@ -217,7 +216,6 @@ const App: React.FC = () => {
                         </div>
                       )}
                     </div>
-                    {/* 标题悬停动画略微向右偏移，增加层次感 */}
                     <h3 
                       onClick={() => setViewingPost(post)}
                       className="text-3xl md:text-4xl font-black mb-6 hover:translate-x-4 transition-all duration-300 cursor-pointer leading-tight group-hover:text-slate-500"
@@ -280,11 +278,11 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Edit/New Post Modal */}
+      {/* Edit/New Post Modal - Optimized Layout */}
       {showEditModal && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-white p-6 md:p-20 overflow-y-auto">
-          <div className="w-full max-w-4xl mx-auto animate-fade">
-            <h2 className="text-5xl font-black mb-12 uppercase tracking-tighter">{isEditing ? 'Edit' : 'New'} Draft</h2>
+        <div className="fixed inset-0 z-[200] flex items-start justify-center bg-white p-6 md:p-20 overflow-y-auto">
+          <div className="w-full max-w-4xl mx-auto animate-fade py-12 md:py-24">
+            <h2 className="text-5xl md:text-6xl font-black mb-16 uppercase tracking-tighter">{isEditing ? 'Edit' : 'New'} Draft</h2>
             <form onSubmit={(e) => {
               e.preventDefault();
               const f = new FormData(e.currentTarget);
@@ -299,29 +297,34 @@ const App: React.FC = () => {
               if (isEditing) setPosts(p => p.map(x => x.id === isEditing.id ? { ...x, ...data } : x));
               else setPosts(p => [{ id: Date.now().toString(), ...data }, ...p]);
               setShowEditModal(false);
-            }} className="space-y-8">
-              <input name="title" defaultValue={isEditing?.title || ''} required className="w-full text-4xl font-black border-b border-slate-100 py-6 focus:outline-none placeholder:text-slate-100" placeholder="Post Title" />
+            }} className="space-y-12">
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-300">Article Title</label>
+                <input name="title" defaultValue={isEditing?.title || ''} required className="w-full text-4xl font-black border-b border-slate-100 py-6 focus:outline-none focus:border-black transition-colors placeholder:text-slate-100" placeholder="Enter title..." />
+              </div>
               
-              <div className="grid grid-cols-2 gap-10">
-                <select name="category" defaultValue={isEditing?.category || 'Tech'} className="border-b border-slate-100 py-4 focus:outline-none font-bold">
-                  <option value="Tech">Tech</option><option value="Design">Design</option><option value="Life">Life</option>
-                </select>
-                <div className="text-[10px] font-black uppercase tracking-widest text-slate-300 self-center">Category selection</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-300">Category Selection</label>
+                  <select name="category" defaultValue={isEditing?.category || 'Tech'} className="w-full border-b border-slate-100 py-4 focus:outline-none focus:border-black transition-colors font-bold appearance-none bg-transparent">
+                    <option value="Tech">Tech</option><option value="Design">Design</option><option value="Life">Life</option>
+                  </select>
+                </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-300">Snippet (Shows in list)</label>
-                <textarea name="excerpt" defaultValue={isEditing?.excerpt || ''} required rows={2} className="w-full text-lg font-light border-b border-slate-100 py-4 focus:outline-none resize-none placeholder:text-slate-100" placeholder="Brief summary of the post..." />
+                <textarea name="excerpt" defaultValue={isEditing?.excerpt || ''} required rows={2} className="w-full text-lg font-light border-b border-slate-100 py-4 focus:outline-none focus:border-black transition-colors resize-none placeholder:text-slate-100" placeholder="Brief summary of the post..." />
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-300">Full Content</label>
-                <textarea name="content" defaultValue={isEditing?.content || ''} required rows={12} className="w-full text-xl font-light border border-slate-100 p-6 focus:border-black transition-colors focus:outline-none resize-none placeholder:text-slate-100" placeholder="Write your full story here..." />
+                <textarea name="content" defaultValue={isEditing?.content || ''} required rows={12} className="w-full text-xl font-light border border-slate-100 p-8 focus:border-black transition-colors focus:outline-none resize-none placeholder:text-slate-100 bg-slate-50/30" placeholder="Write your full story here..." />
               </div>
 
-              <div className="flex space-x-12 pt-10">
+              <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-12 pt-10">
                 <button type="submit" className="bg-black text-white font-black px-12 py-5 uppercase text-xs tracking-widest hover:bg-slate-800 transition-colors">Save Content</button>
-                <button type="button" onClick={() => setShowEditModal(false)} className="font-black uppercase text-xs tracking-widest text-slate-300 hover:text-black transition-colors">Discard</button>
+                <button type="button" onClick={() => setShowEditModal(false)} className="font-black uppercase text-xs tracking-widest text-slate-300 hover:text-black transition-colors py-5">Discard Changes</button>
               </div>
             </form>
           </div>
