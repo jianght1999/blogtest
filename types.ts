@@ -11,10 +11,10 @@ export interface Project {
 export interface BlogPost {
   id: string;
   title: string;
-  excerpt: string;
-  content: string; // Added field for full article content
+  excerpt?: string; // Made optional
+  content: string;
   date: string;
-  category: 'Tech' | 'Notes' | 'Craft' | 'Standards'; // Replaced Analog with Craft
+  category: 'Tech' | 'Notes' | 'Craft' | 'Standards';
   readTime: string;
 }
 

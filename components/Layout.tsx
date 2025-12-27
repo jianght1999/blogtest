@@ -24,7 +24,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-950/80 backdrop-blur-md py-4 border-b border-white/10' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="text-xl font-bold tracking-tighter">
-            <span className="text-gradient">AC.</span>
+            <span className="text-gradient">FE.</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <NavItem href="#about">About</NavItem>
@@ -43,7 +43,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       <main>{children}</main>
       <footer className="border-t border-white/5 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-500 text-sm">© 2024 Alex Chen. Built with Gemini & Tailwind.</p>
+          <p className="text-slate-500 text-sm">© 2024 FUZZYEEE. Built with Gemini & Tailwind.</p>
           <div className="flex space-x-6 mt-6 md:mt-0">
             <a href="#" className="text-slate-400 hover:text-white transition-colors">GitHub</a>
             <a href="#" className="text-slate-400 hover:text-white transition-colors">LinkedIn</a>
